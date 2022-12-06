@@ -1,7 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using AdventOfCode.Puzzles.Day6;
 
-
-using AdventOfCode.Puzzles.Day5;
-
-var solution = new CrateSolution2();
+var solution = new CommunicationSolution2();
 Console.WriteLine(solution.Solve());

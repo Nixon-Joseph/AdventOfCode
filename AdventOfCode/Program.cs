@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AdventOfCode.Puzzles.Day7;
+using AdventOfCode.Puzzles.Day8;
 
-var solution = new DirectorySolution2();
+var solution = new TreeCountSolution2();
 Console.WriteLine(solution.Solve());

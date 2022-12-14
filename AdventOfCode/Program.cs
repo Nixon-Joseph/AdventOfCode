@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AdventOfCode.Puzzles.Day9;
+using AdventOfCode.Puzzles.Day10;
 
-var solution = new RopeSolution();
+var solution = new CathodeSolution();
 Console.WriteLine(solution.Solve());

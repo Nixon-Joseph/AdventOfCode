@@ -12,18 +12,9 @@
             var sum = 0;
             foreach(var game in cubeGames)
             {
-                if (game.CubeSets.Any(cs => cs.ContainsKey(Color.green) && cs[Color.green] > SOLUTION_GREEN_COUNT))
-                {
-                    continue;
-                }
-                if (game.CubeSets.Any(cs => cs.ContainsKey(Color.red) && cs[Color.red] > SOLUTION_RED_COUNT))
-                {
-                    continue;
-                }
-                if (game.CubeSets.Any(cs => cs.ContainsKey(Color.blue) && cs[Color.blue] > SOLUTION_BLUE_COUNT))
-                {
-                    continue;
-                }
+                if (game.CubeSets.Any(cs => cs.ContainsKey(Color.green) && cs[Color.green] > SOLUTION_GREEN_COUNT)) { continue; }
+                if (game.CubeSets.Any(cs => cs.ContainsKey(Color.red) && cs[Color.red] > SOLUTION_RED_COUNT)) { continue; }
+                if (game.CubeSets.Any(cs => cs.ContainsKey(Color.blue) && cs[Color.blue] > SOLUTION_BLUE_COUNT)) { continue; }
                 sum += game.GameID;
             }
             return sum;

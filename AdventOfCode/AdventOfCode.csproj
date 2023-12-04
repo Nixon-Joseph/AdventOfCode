@@ -51,6 +51,9 @@
     <None Update="Puzzles\2023\Day02\Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Puzzles\2023\Day03\Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

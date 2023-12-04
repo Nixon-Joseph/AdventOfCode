@@ -2,12 +2,12 @@
 
 namespace AdventOfCode.Puzzles._2023.Day04
 {
-    internal abstract class ScratchBase : BaseSolution<IEnumerable<ScratchCard>>
+    internal abstract class ScratchBase : BaseSolution<List<ScratchCard>>
     {
-        internal override IEnumerable<ScratchCard> ReadInputFromFile()
+        internal override List<ScratchCard> ReadInputFromFile()
         {
             var lines = File.ReadLines("./Puzzles/2023/Day04/Input.txt");
-            return lines.Select(l => new ScratchCard(l));
+            return lines.Select(l => new ScratchCard(l)).ToList();
         }
     }
 
@@ -49,7 +49,10 @@ namespace AdventOfCode.Puzzles._2023.Day04
             return points;
         }
 
+        public int GetNumCardsToCopy() => WinningNumbers.Count( winningNumber => PlayingNumbers.Contains( winningNumber ) );
+
         public int GameNumber { get; set; }
+        public int Copies { get; set; } = 1;
         public IEnumerable<int> WinningNumbers { get; set; }
         public IEnumerable<int> PlayingNumbers { get; set; }
     }

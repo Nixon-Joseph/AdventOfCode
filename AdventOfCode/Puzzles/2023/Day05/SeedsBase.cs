@@ -75,9 +75,12 @@ namespace AdventOfCode.Puzzles._2023.Day05
             }
         }
 
+        public IEnumerable<Map> Maps => _maps;
+
         public void AddMap(long dest, long start, long length)
         {
             _maps.Add(new Map(dest, start, length));
+            _maps = _maps.OrderBy(m => m.RangeStart).ToList();
         }
     }
 
@@ -88,6 +91,20 @@ namespace AdventOfCode.Puzzles._2023.Day05
             Destination = dest;
             RangeStart = start;
             RangeLength = length;
+        }
+
+        public bool IsInDestinationInRange(long min, long max)
+        {
+            return (min >= Destination && min < Destination + RangeLength) ||
+                    (max <= Destination + RangeLength && max >= Destination) ||
+                    (min <= Destination && max >= Destination + RangeLength);
+        }
+
+        public (long availableMin, long availableMax) GetAvailableRange(long min, long max)
+        {
+            var availableMin = Math.Max(min, RangeStart);
+            var availableMax = Math.Min(max, RangeStart + RangeLength);
+            return (availableMin, availableMax);
         }
 
         public long Destination { get; set; }

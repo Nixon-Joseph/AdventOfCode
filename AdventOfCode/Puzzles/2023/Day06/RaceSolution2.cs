@@ -7,42 +7,53 @@ namespace AdventOfCode.Puzzles._2023.Day06
         internal override Race ReadInputFromFile()
         {
             var lines = File.ReadAllLines(@"./Puzzles/2023/Day06/Input.txt");
-            var time = 0L;
-            var distance = 0L;
-            foreach (var line in lines)
-            {
-                if (line.StartsWith("Time: "))
-                {
-                    time = long.Parse(string.Join("", line[6..].Split(' ', StringSplitOptions.RemoveEmptyEntries)));
-                }
-                else if (line.StartsWith("Distance: "))
-                {
-                    distance = long.Parse(string.Join("", line[10..].Split(' ', StringSplitOptions.RemoveEmptyEntries)));
-                }
-            }
+            var time = long.Parse(string.Join("", lines[0][6..].Split(' ', StringSplitOptions.RemoveEmptyEntries)));
+            var distance = long.Parse(string.Join("", lines[1][10..].Split(' ', StringSplitOptions.RemoveEmptyEntries)));
             return new Race { Time = time, Distance = distance };
         }
 
+        // Optimization got it to 1ms solve time
         public override object Solve()
         {
             var timer = new Stopwatch();
             timer.Start();
             var race = ReadInputFromFile();
 
-            var raceWinOptions = 0;
-            var timeCharge = 1;
-            while (timeCharge < race.Time)
+            var timeChargeStart = 1;
+            var step = 10000;
+            while (timeChargeStart < race.Time)
             {
-                if (timeCharge * (race.Time - timeCharge) > race.Distance)
-                {
-                    raceWinOptions++;
+                if (timeChargeStart * (race.Time - timeChargeStart) > race.Distance)
+                { 
+                    if (step == 1) { break; }
+                    else
+                    {
+                        timeChargeStart -= step;
+                        step /= 10;
+                    }
                 }
-                timeCharge++;
+                timeChargeStart += step;
             }
+            var timeChargeEnd = race.Time;
+            step = 10000;
+            while (timeChargeEnd > timeChargeStart)
+            {
+                if (timeChargeEnd * (race.Time - timeChargeEnd) > race.Distance)
+                {
+                    if (step == 1) { break; }
+                    else
+                    {
+                        timeChargeEnd += step;
+                        step /= 10;
+                    }
+                }
+                timeChargeEnd -= step;
+            }
+            timeChargeEnd++; // inclusive
 
             timer.Stop();
             Console.WriteLine($"Solved in {timer.ElapsedMilliseconds}ms");
-            return raceWinOptions;
+            return timeChargeEnd - timeChargeStart;
         }
     }
 }

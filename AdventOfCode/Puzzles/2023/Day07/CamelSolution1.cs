@@ -2,6 +2,8 @@
 {
     internal class CamelSolution1 : CamelCardBase
     {
+        public CamelSolution1() : base(false) { }
+
         public override object Solve()
         {
             var hands = ReadInputFromFile();
@@ -11,7 +13,7 @@
             {
                 sum += hands[i].Bid * (i + 1);
             }
-            return sum;
+            return sum; // 249483956
         }
     }
 }

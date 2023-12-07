@@ -4,13 +4,20 @@ namespace AdventOfCode.Puzzles._2023.Day07
 {
     internal abstract class CamelCardBase : BaseSolution<List<CamelCardHand>>
     {
+        private readonly bool _jokerMode;
+
+        public CamelCardBase(bool jokerMode)
+        {
+            _jokerMode = jokerMode;
+        }
+
         internal override List<CamelCardHand> ReadInputFromFile()
         {
             var lines = File.ReadAllLines(@"./Puzzles/2023/Day07/Input.txt");
             var hands = new List<CamelCardHand>();
             foreach (var line in lines)
             {
-                hands.Add(new CamelCardHand(line[..5].ToCharArray(), int.Parse(line[5..])));
+                hands.Add(new CamelCardHand(line[..5].ToCharArray(), int.Parse(line[5..]), _jokerMode));
             }
             return hands;
         }
@@ -35,10 +42,15 @@ namespace AdventOfCode.Puzzles._2023.Day07
             { '2', 2 },
         });
 
-        public CamelCardHand(char[] cards, int bid)
+        private const char JOKER = 'J';
+
+        private readonly bool _jokerMode;
+
+        public CamelCardHand(char[] cards, int bid, bool jokerMode)
         {
             Cards = cards;
             Bid = bid;
+            _jokerMode = jokerMode;
         }
 
         public int Bid { get; set; }
@@ -59,6 +71,18 @@ namespace AdventOfCode.Puzzles._2023.Day07
             private set { _strength = value; }
         }
 
+        private int GetCardValue(char card)
+        {
+            if (_jokerMode && card == JOKER)
+            {
+                return 1;
+            }
+            else
+            {
+                return _cardValues[card];
+            }
+        }
+
         public int CompareTo(object? obj)
         {
             if (obj is CamelCardHand compHand)
@@ -67,11 +91,11 @@ namespace AdventOfCode.Puzzles._2023.Day07
                 {
                     for (int i = 0; i < Cards.Length; i++)
                     {
-                        if (_cardValues[Cards[i]] > _cardValues[compHand.Cards[i]])
+                        if (GetCardValue(Cards[i]) > GetCardValue(compHand.Cards[i]))
                         {
                             return 1;
                         }
-                        else if (_cardValues[Cards[i]] < _cardValues[compHand.Cards[i]])
+                        else if (GetCardValue(Cards[i]) < GetCardValue(compHand.Cards[i]))
                         {
                             return -1;
                         }
@@ -86,9 +110,9 @@ namespace AdventOfCode.Puzzles._2023.Day07
                 {
                     return 1;
                 }
-            } 
-            else 
-            { 
+            }
+            else
+            {
                 return 1;
             }
         }
@@ -102,26 +126,88 @@ namespace AdventOfCode.Puzzles._2023.Day07
             }
             else if (groups.Any(x => x.Count() == 4))
             {
+                if (_jokerMode && Cards.Any(c => c == JOKER))
+                {
+                    return Strength.FiveOfAKind;
+                }
                 return Strength.FourOfAKind;
             }
             else if (groups.Any(x => x.Count() == 3) && groups.Any(x => x.Count() == 2))
             {
+                if (_jokerMode && Cards.Any(c => c == JOKER))
+                {
+                    return Strength.FiveOfAKind;
+                }
                 return Strength.FullHouse;
             }
             else if (groups.Any(x => x.Count() == 3))
             {
+                if (_jokerMode)
+                {
+                    var jokerCount = Cards.Count(x => x == JOKER);
+                    if (jokerCount == 3)
+                    {
+                        if (groups.Count() == 2)
+                        {
+                            return Strength.FiveOfAKind;
+                        }
+                        else
+                        {
+                            return Strength.FourOfAKind;
+                        }
+                    }
+                    else if (jokerCount == 2)
+                    {
+                        return Strength.FiveOfAKind;
+                    }
+                    else if (jokerCount == 1)
+                    {
+                        return Strength.FourOfAKind;
+                    }
+                }
                 return Strength.ThreeOfAKind;
             }
             else if (groups.Count(x => x.Count() == 2) == 2)
             {
+                if (_jokerMode)
+                {
+                    var jokerCount = Cards.Count(x => x == JOKER);
+                    if (jokerCount == 2)
+                    {
+                        return Strength.FourOfAKind;
+                    }
+                    else if (jokerCount == 1)
+                    {
+                        return Strength.FullHouse;
+                    }
+                }
                 return Strength.TwoPair;
             }
             else if (groups.Any(x => x.Count() == 2))
             {
+                if (_jokerMode)
+                {
+                    var jokerCount = Cards.Count(x => x == JOKER);
+                    if (jokerCount == 2)
+                    {
+                        return Strength.ThreeOfAKind;
+                    }
+                    else if (jokerCount == 1)
+                    {
+                        return Strength.ThreeOfAKind;
+                    }
+                }
                 return Strength.OnePair;
             }
             else
             {
+                if (_jokerMode)
+                {
+                    if (Cards.Count(x => x == JOKER) > 0)
+                    {
+                        return Strength.OnePair;
+                    }
+                }
                 return Strength.HighCard;
             }
         }

@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AdventOfCode.Puzzles._2023.Day07;
+using AdventOfCode.Puzzles._2023.Day08;
 
-var solution = new CamelSolution2();
+var solution = new StormSolution2();
 Console.WriteLine(solution.Solve());

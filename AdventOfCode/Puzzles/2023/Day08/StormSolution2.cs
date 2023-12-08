@@ -9,7 +9,6 @@ namespace AdventOfCode.Puzzles._2023.Day08
             var (directions, nodeDict) = ReadInputFromFile();
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            ulong numSteps = 0;
             var iterationCounter = 0;
             var selectedNodes = nodeDict.Values.Where(n => n.Name.EndsWith('A')).ToList();
 
@@ -21,7 +20,6 @@ namespace AdventOfCode.Puzzles._2023.Day08
                 if (startNodes.All(s => skipDict.ContainsKey(s)))
                 {
                     selectedNodes = startNodes.Select(s => skipDict[s]).ToList();
-                    numSteps += (ulong)directions.Count();
                 }
                 else 
                 {
@@ -31,7 +29,6 @@ namespace AdventOfCode.Puzzles._2023.Day08
                         {
                             selectedNodes[i] = selectedNodes[i][direction];
                         }
-                        numSteps++;
                     }
                 }
                 for (var i = 0; i < selectedNodes.Count; i++)
@@ -46,14 +43,8 @@ namespace AdventOfCode.Puzzles._2023.Day08
                 {
                     break;
                 }
-                //if (iterationCounter % 1000000 == 0)
-                //{
-                //    Console.WriteLine($"iteration: {iterationCounter:N0}, numSteps: {numSteps:N0}");
-                //}
                 iterationCounter++;
             }
-            //Console.WriteLine($"-- iteration: {iterationCounter:N0}, numSteps: {numSteps:N0}");
-            var possibleEndNodes = skipDict.Values.Where(n => n.Name.EndsWith('Z')).ToList();
             var superSkipDict = skipDict.Where(n => n.Key.EndsWith('A')).ToDictionary(s => s.Key, s => 0UL);
             foreach (var nodeKVP in skipDict.Where(n => n.Key.EndsWith('A')))
             {

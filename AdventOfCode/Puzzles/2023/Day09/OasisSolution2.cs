@@ -21,6 +21,7 @@
                         curCollection.Add(curLayer[i + 1] - curLayer[i]);
                     }
                     layers.Add(curCollection);
+
                 } while (!curCollection.All(x => x == 0));
                 layers[^2].Insert(0, layers[^2].First()); // Add the first element of the second to last layer as the first element, skips the first step
                 for (int i = layers.Count - 2; i >= 1; i--)

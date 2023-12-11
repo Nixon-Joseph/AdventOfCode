@@ -99,32 +99,32 @@
                 outside = GetOutsideDirection(maze, currentPos, outside, directionOfTravel);
             }
             // finish out remaining unchecked positions
-            for (int i = 0; i < maze.GetLength(0); i++)
+            for (y = 0; y < maze.GetLength(0); y++)
             {
-                for (int j = 0; j < maze.GetLength(1); j++)
+                for (x = 0; x < maze.GetLength(1); x++)
                 {
-                    if (loopParts[j, i] == PositionType.Unchecked)
+                    if (loopParts[x, y] == PositionType.Unchecked)
                     {
-                        if (loopParts[j - 1, i] == PositionType.Inside || loopParts[j + 1, i] == PositionType.Inside || loopParts[j, i - 1] == PositionType.Inside || loopParts[j, i + 1] == PositionType.Inside)
+                        if (loopParts[x - 1, y] == PositionType.Inside || loopParts[x + 1, y] == PositionType.Inside || loopParts[x, y - 1] == PositionType.Inside || loopParts[x, y + 1] == PositionType.Inside)
                         {
-                            loopParts[j, i] = PositionType.Inside;
+                            loopParts[x, y] = PositionType.Inside;
                             insideLoopCount++;
                         }
                     }
-                    else if (loopParts[j, i] == PositionType.Inside)
+                    else if (loopParts[x, y] == PositionType.Inside)
                     {
                         insideLoopCount++;
                     }
                 }
             }
-            for (int i = 0; i < maze.GetLength(0); i++)
+            for (y = 0; y < maze.GetLength(0); y++)
             {
-                for (int j = 0; j < maze.GetLength(1); j++)
+                for (x = 0; x < maze.GetLength(1); x++)
                 {
-                    switch (loopParts[j, i])
+                    switch (loopParts[x, y])
                     {
                         case PositionType.Inside:
-                            if (maze[j, i] == '.')
+                            if (maze[x, y] == '.')
                             {
                                 Console.Write('I');
                             }
@@ -137,7 +137,7 @@
                             Console.Write(' ');
                             break;
                         case PositionType.Unchecked:
-                            if (maze[j, i] == '.')
+                            if (maze[x, y] == '.')
                             {
                                 Console.Write('?');
                             }
@@ -147,7 +147,7 @@
                             }
                             break;
                         case PositionType.Loop:
-                            Console.Write(maze[j, i]);
+                            Console.Write(maze[x, y]);
                             break;
                     }
                 }

@@ -46,14 +46,11 @@
         public override object Solve()
         {
             var galaxies = ReadInputFromFile();
-            foreach (var galaxy in galaxies)
+            for (int i = 0; i < galaxies.Count(); i++)
             {
-                foreach (var otherGalaxy in galaxies)
+                for (int j = i + 1; j < galaxies.Count(); j++)
                 {
-                    if (galaxy.ID != otherGalaxy.ID)
-                    {
-                        galaxy.CalcDistanceToNeighbor(otherGalaxy);
-                    }
+                    galaxies.ElementAt(i).CalcDistanceToNeighbor(galaxies.ElementAt(j));
                 }
             }
             return Galaxy.NeighborDistances.Sum(x => x.Value);

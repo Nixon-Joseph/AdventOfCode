@@ -19,7 +19,7 @@ namespace AdventOfCode.Puzzles.Day11
             return monkeys;
         }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var monkeys = ReadInputFromFile();
             const int rounds = 10000;

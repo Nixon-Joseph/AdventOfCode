@@ -4,7 +4,7 @@
     {
         public CamelSolution2() : base(true) { }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var hands = ReadInputFromFile();
             hands.Sort();

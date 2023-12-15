@@ -4,7 +4,7 @@ namespace AdventOfCode.Puzzles._2023.Day12
 {
     internal class SpringSolution1 : SpringBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var lines = ReadInputFromFile();
             var sum = 0;

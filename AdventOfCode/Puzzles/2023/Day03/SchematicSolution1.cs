@@ -6,7 +6,7 @@ namespace AdventOfCode.Puzzles._2023.Day03
     {
         private static readonly Regex _numAndSymbolRegex = new(@"(?<symbol>[^\d.\s])|(?<number>[\d]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var lines = ReadInputFromFile();
             List<Symbol> symbols = new();

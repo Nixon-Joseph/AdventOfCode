@@ -10,7 +10,7 @@
             Loop
         }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var maze = ReadInputFromFile();
             var (startX, startY) = FindStartingPoint(maze);

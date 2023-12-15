@@ -2,7 +2,7 @@
 {
     public class CubeSolution2 : CubeBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var cubeGames = ReadInputFromFile();
             var sum = 0;

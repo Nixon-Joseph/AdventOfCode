@@ -2,7 +2,7 @@
 {
     internal class CalorieSolution2 : ElfCalorieBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var parts = ReadInputFromFile();
             var totalCalsForElvs = parts.Select(x => x.Sum());

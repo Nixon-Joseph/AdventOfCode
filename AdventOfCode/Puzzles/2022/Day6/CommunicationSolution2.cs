@@ -4,7 +4,7 @@
     {
         public CommunicationSolution2() : base(14) { }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var input = ReadInputFromFile();
             var queue = new Queue<char>();

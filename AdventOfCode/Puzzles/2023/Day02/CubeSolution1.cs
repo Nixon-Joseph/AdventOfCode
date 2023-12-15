@@ -6,7 +6,7 @@
         private const int SOLUTION_RED_COUNT = 12;
         private const int SOLUTION_BLUE_COUNT = 14;
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var cubeGames = ReadInputFromFile();
             var sum = 0;

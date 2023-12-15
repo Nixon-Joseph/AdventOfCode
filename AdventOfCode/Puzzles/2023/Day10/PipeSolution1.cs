@@ -2,7 +2,7 @@
 {
     internal class PipeSolution1 : PipeBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var maze = ReadInputFromFile();
             var (startX, startY) = FindStartingPoint(maze);

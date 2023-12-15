@@ -2,7 +2,7 @@
 {
     internal class CalibrationSolution1 : CalibrationBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var input = ReadInputFromFile();
             // find the first and last digit in each input line, and append them together.

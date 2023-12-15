@@ -2,7 +2,7 @@
 {
     public class RucksackSolution1 : ElfRucksackSolutionBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var rucksacks = ReadInputFromFile();
             var prioritySum = 0;

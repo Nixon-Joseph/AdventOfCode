@@ -2,7 +2,7 @@
 {
     internal class OasisSolution2 : OasisBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var lists = ReadInputFromFile();
             var total = 0;

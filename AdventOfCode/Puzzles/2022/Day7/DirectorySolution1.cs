@@ -4,7 +4,7 @@
     {
         private const int targetSize = 100000;
 
-        public override object? Solve()
+        protected override object DoSolve()
         {
             var rootFolder = ReadInputFromFile();
             int totalSize = 0;

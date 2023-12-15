@@ -6,7 +6,7 @@ namespace AdventOfCode.Puzzles._2023.Day01
     {
         private static readonly Regex _digitRegex = new("(one|two|three|four|five|six|seven|eight|nine)|([1-9]{1})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var input = ReadInputFromFile();
             // find the first and last digit in each input line, and append them together.

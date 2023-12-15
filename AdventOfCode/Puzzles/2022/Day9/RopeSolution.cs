@@ -7,7 +7,7 @@ namespace AdventOfCode.Puzzles.Day9
     {
         protected RopeGrid RopeGrid { get; } = new();
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var instructions = ReadInputFromFile();
             foreach (var instruction in instructions)

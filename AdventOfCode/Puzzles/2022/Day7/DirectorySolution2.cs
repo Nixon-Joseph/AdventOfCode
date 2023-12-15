@@ -5,7 +5,7 @@
         private const int totalAvailable = 70000000;
         private const int updateSize = 30000000;
 
-        public override object? Solve()
+        protected override object DoSolve()
         {
             var rootFolder = ReadInputFromFile();
             var targetSize = updateSize - (totalAvailable - rootFolder.Size);

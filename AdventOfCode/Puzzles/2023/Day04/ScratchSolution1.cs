@@ -2,7 +2,7 @@
 {
     internal class ScratchSolution1 : ScratchBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var cards = ReadInputFromFile();
             return cards.Sum(c => c.GetPoints());

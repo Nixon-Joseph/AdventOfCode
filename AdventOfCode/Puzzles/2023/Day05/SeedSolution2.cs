@@ -2,7 +2,7 @@
 {
     internal class SeedSolution2 : SeedsBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var (seeds, mappers) = ReadInputFromFile();
 

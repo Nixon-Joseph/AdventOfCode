@@ -8,7 +8,7 @@ namespace AdventOfCode.Puzzles.Day4
 {
     public class CampCleanSolution1 : CampCleanSolutionBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var assignmentPairs = ReadInputFromFile();
             return assignmentPairs.Count(x => x.FullyContains());

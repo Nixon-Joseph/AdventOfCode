@@ -26,7 +26,7 @@
             return races;
         }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var races = ReadInputFromFile();
             var product = 1L;

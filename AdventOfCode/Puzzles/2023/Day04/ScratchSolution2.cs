@@ -2,7 +2,7 @@
 {
     internal class ScratchSolution2 : ScratchBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var cards = ReadInputFromFile();
             for (var cardIndex = 0; cardIndex < cards.Count; cardIndex++)

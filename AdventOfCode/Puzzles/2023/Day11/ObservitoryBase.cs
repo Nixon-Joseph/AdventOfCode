@@ -43,7 +43,7 @@
             return galaxies;
         }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var galaxies = ReadInputFromFile();
             for (int i = 0; i < galaxies.Count(); i++)

@@ -26,7 +26,7 @@ namespace AdventOfCode.Puzzles.Day10
             return ops;
         }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var cycle = 1;
             var x = 1;

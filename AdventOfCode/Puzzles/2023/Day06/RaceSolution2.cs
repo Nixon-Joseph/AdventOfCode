@@ -13,7 +13,7 @@ namespace AdventOfCode.Puzzles._2023.Day06
         }
 
         // Optimization got it to 1ms solve time
-        public override object Solve()
+        protected override object DoSolve()
         {
             var timer = new Stopwatch();
             timer.Start();

@@ -2,7 +2,7 @@
 {
     internal class RPSSolution2 : ElfRPSBase<RPSStrategy>
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var parsedInputs = ReadInputFromFile();
             var totalScore = 0;

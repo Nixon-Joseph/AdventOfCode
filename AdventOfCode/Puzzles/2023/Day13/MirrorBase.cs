@@ -23,7 +23,7 @@
             return puzzles;
         }
 
-        public override object Solve()
+        protected override object DoSolve()
         {
             var puzzles = ReadInputFromFile();
             var sum = 0;

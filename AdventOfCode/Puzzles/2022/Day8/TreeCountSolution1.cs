@@ -2,7 +2,7 @@
 {
     public class TreeCountSolution1 : TreeCountBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var (rowCount, colCount, grid) = ReadInputFromFile();
             var visibleTreeCount = 0;

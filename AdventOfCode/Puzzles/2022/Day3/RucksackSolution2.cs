@@ -4,7 +4,7 @@ namespace AdventOfCode.Puzzles.Day3
 {
     public class RucksackSolution2 : ElfRucksackSolutionBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var rucksacks = ReadInputFromFile();
             var prioritySum = 0;

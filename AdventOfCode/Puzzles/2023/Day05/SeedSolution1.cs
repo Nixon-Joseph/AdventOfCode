@@ -2,7 +2,7 @@
 {
     internal class SeedSolution1 : SeedsBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var (seeds, mappers) = ReadInputFromFile();
             var minValue = long.MaxValue;

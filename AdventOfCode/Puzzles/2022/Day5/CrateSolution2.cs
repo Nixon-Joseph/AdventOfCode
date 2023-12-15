@@ -2,7 +2,7 @@
 {
     internal class CrateSolution2 : StackMoverSolutionBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var stacks = ReadInputFromFile();
             foreach (var instruction in stacks.Instructions)

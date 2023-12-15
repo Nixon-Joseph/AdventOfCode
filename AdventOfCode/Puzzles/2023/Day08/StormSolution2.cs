@@ -4,7 +4,7 @@ namespace AdventOfCode.Puzzles._2023.Day08
 {
     internal class StormSolution2 : StormBase
     {
-        public override object Solve()
+        protected override object DoSolve()
         {
             var (directions, nodeDict) = ReadInputFromFile();
             var stopWatch = new Stopwatch();

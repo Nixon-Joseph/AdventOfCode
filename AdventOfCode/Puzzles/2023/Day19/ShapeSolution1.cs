@@ -25,7 +25,7 @@
 
         internal override (Dictionary<string, Func<Shape, string>> workflowDict, List<Shape> shapes) ReadInputFromFile()
         {
-            var lines = ReadFileAsLines(@".\Puzzles\2023\Day20\Input.txt");
+            var lines = ReadFileAsLines(@".\Puzzles\2023\Day19\Input.txt");
             var shapes = new List<Shape>();
             var workflowDict = new Dictionary<string, Func<Shape, string>>();
 

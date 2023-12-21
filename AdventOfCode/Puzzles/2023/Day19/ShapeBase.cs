@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace AdventOfCode.Puzzles._2023.Day20
+namespace AdventOfCode.Puzzles._2023.Day19
 {
     internal abstract class ShapeBase : BaseSolution<(Dictionary<string, Func<Shape, string>> workflowDict, List<Shape> shapes)>
     {

@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Puzzles._2023.Day20
+﻿namespace AdventOfCode.Puzzles._2023.Day19
 {
     internal class ShapeSolution1 : ShapeBase
     {

@@ -20,6 +20,10 @@ const Home = () => {
 			.catch((e) => console.error(e));
 		const sol = Solutions[`Day${dayNumber}`] ?? null;
 		setSolution(sol);
+		setSolutionPart1(null);
+		setSolutionPart2(null);
+		setSolutionPart1Time(null);
+		setSolutionPart2Time(null);
 	}, [dayNumber, solution]);
 
 	const showSolution = async (part) => {
@@ -78,10 +82,13 @@ const Home = () => {
 									? "Show solution part 1"
 									: "No solution yet"}
 							</button>
-							<pre>{solutionPart1}</pre>
-							{solutionPart1Time && (
+							<br />
+							{solutionPart1 ? (
+								<input type="readonly" readOnly={true} value={solutionPart1} />
+							) : null}
+							{solutionPart1Time !== null ? (
 								<pre>Part 1 took {solutionPart1Time}ms</pre>
-							)}
+							) : null}
 						</div>
 						<div className="col-6">
 							<h2>Part 2:</h2>
@@ -94,10 +101,13 @@ const Home = () => {
 									? "Show solution part 2"
 									: "No solution yet"}
 							</button>
-							<pre>{solutionPart2}</pre>
-							{solutionPart2Time && (
+							<br />
+							{solutionPart2 ? (
+								<input type="readonly" readOnly={true} value={solutionPart2} />
+							) : null}
+							{solutionPart2Time !== null ? (
 								<pre>Part 2 took {solutionPart2Time}ms</pre>
-							)}
+							) : null}
 						</div>
 					</div>
 				</div>

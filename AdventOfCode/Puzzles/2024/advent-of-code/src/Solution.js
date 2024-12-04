@@ -43,7 +43,6 @@ const Solution = ({ day }) => {
 			.catch((e) => console.error(e));
 		const sol = Solutions[`Day${day}`] ?? null;
 		setSolution(sol);
-		console.log(solutionPart1Time);
 	}, [day]);
 
 	const showSolution = async (part) => {
@@ -124,6 +123,7 @@ const Solution = ({ day }) => {
 						height: "100%",
 						width: "100%",
 						resize: "none",
+						fontFamily: "monospace",
 					}}
 					readOnly
 					value={inputText || "No Input Text"}

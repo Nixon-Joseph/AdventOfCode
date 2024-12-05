@@ -2,16 +2,25 @@ const inputParser = {
 	parseAsMultiDimentionArray: (
 		input,
 		splitChar = " ",
-		removeEmpties = true
+		removeEmpties = true,
+		returnAsNumbers = false
 	) => {
 		return input.split("\r\n").map((line) =>
 			line
 				.split(splitChar)
 				.filter((item) => (removeEmpties ? item !== "" : true))
-				.map((x) => x.trim())
+				.map((x) => {
+					const val = x.trim();
+					return returnAsNumbers ? Number(val) : val;
+				})
 		);
 	},
-	parseAsLeftRightArrays: (input, splitChar = " ", removeEmpties = true) => {
+	parseAsLeftRightArrays: (
+		input,
+		splitChar = " ",
+		removeEmpties = true,
+		returnAsNumbers = false
+	) => {
 		const returnArrs = { left: [], right: [] };
 		input.split("\r\n").forEach((line) => {
 			const lineContents = line
@@ -19,11 +28,21 @@ const inputParser = {
 				.filter((item) => (removeEmpties ? item !== "" : true))
 				.map((x) => x.trim());
 			if (lineContents.length === 2) {
-				returnArrs.left.push(lineContents[0]);
-				returnArrs.right.push(lineContents[1]);
+				returnArrs.left.push(
+					returnAsNumbers ? Number(lineContents[0]) : lineContents[0]
+				);
+				returnArrs.right.push(
+					returnAsNumbers ? Number(lineContents[1]) : lineContents[1]
+				);
 			}
 		});
 		return returnArrs;
+	},
+	parseAsLineArray: (input, splitChar = "\r\n", removeEmpties = true) => {
+		return input
+			.split(splitChar)
+			.filter((item) => (removeEmpties ? item !== "" : true))
+			.map((x) => x.trim());
 	},
 };
 
@@ -199,7 +218,7 @@ const Day4 = {
 		return false;
 	},
 	setup: (input) => {
-		const lines = input.toUpperCase().split("\r\n");
+		const lines = inputParser.parseAsLineArray(input.toUpperCase());
 		const lineLength = lines[0].length;
 		const numLines = lines.length;
 		return [lines, lineLength, numLines];
@@ -330,9 +349,71 @@ const Day4 = {
 	},
 };
 
+const Day5 = {
+	sortUpdateByRules: (currentUpdate, allRules) => {
+		const sorted = [...currentUpdate].sort((a, b) => {
+			const foundARules = allRules.filter(
+				(x) => x.left === a && currentUpdate.includes(x.right)
+			);
+			const foundBRules = allRules.filter(
+				(x) => x.left === b && currentUpdate.includes(x.right)
+			);
+			return foundARules.length > foundBRules.length ? -1 : 1;
+		});
+		return sorted;
+	},
+	getMiddleNumberOfCorrectlySortedUpdate: (currentUpdate, allRules) => {
+		const sorted = Day5.sortUpdateByRules(currentUpdate, allRules);
+		if (sorted.join("") === currentUpdate.join("")) {
+			return currentUpdate[Math.floor(currentUpdate.length / 2)];
+		}
+		return 0;
+	},
+	setup: (input) => {
+		const sections = input.split("\r\n\r\n");
+		const rules = inputParser.parseAsLeftRightArrays(
+			sections[0],
+			"|",
+			true,
+			true
+		);
+		const ruleArr = rules.left.map((v, i) => ({
+			left: v,
+			right: rules.right[i],
+		}));
+		const updates = inputParser.parseAsMultiDimentionArray(
+			sections[1],
+			",",
+			true,
+			true
+		);
+		return { ruleArr, updates };
+	},
+	part1: async (input) => {
+		const { ruleArr, updates } = Day5.setup(input);
+		let middleSum = 0;
+		updates.forEach((update) => {
+			middleSum += Day5.getMiddleNumberOfCorrectlySortedUpdate(update, ruleArr);
+		});
+		return middleSum;
+	},
+	part2: async (input) => {
+		const { ruleArr, updates } = Day5.setup(input);
+		let middleSum = 0;
+		updates.forEach((update) => {
+			if (Day5.getMiddleNumberOfCorrectlySortedUpdate(update, ruleArr) === 0) {
+				const sortedUpdate = Day5.sortUpdateByRules(update, ruleArr);
+				middleSum += sortedUpdate[Math.floor(sortedUpdate.length / 2)];
+			}
+		});
+		return middleSum;
+	},
+};
+
 export const Solutions = {
 	Day1,
 	Day2,
 	Day3,
 	Day4,
+	Day5,
 };

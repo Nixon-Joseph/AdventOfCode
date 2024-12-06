@@ -489,12 +489,7 @@ const Day6 = {
 				// otherwise move in the current direction
 				currentPosition = nextPos;
 			}
-		} while (
-			currentPosition.y >= 0 &&
-			currentPosition.x >= 0 &&
-			currentPosition.y < grid.length &&
-			currentPosition.x < grid[0].length
-		);
+		} while (checkIsInBounds(currentPosition.x, currentPosition.y));
 		return 0;
 	},
 	setup: (input) => {

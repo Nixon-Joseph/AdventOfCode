@@ -882,9 +882,9 @@ const Day9 = {
 	part2: async (input) => {
 		const diskRep = Day9.setup(input);
 		let printIndex = 0;
-		let printStr = diskRep
-			.map((x) => `${x.id === "FREESPACE" ? "." : x.id}:${x.size}`)
-			.join(",");
+		// let printStr = diskRep
+		// 	.map((x) => `${x.id === "FREESPACE" ? "." : x.id}:${x.size}`)
+		// 	.join(",");
 		const checkedIds = [];
 		for (let i = diskRep.length - 1; i >= 0; i--) {
 			const block = diskRep[i];
@@ -941,16 +941,16 @@ const Day9 = {
 					diskRep.splice(i, 0, { id: "FREESPACE", size: block.size });
 				}
 				printIndex = 0;
-				printStr +=
-					"\n" +
-					diskRep
-						.map((x) => `${x.id === "FREESPACE" ? "." : x.id}:${x.size}`)
-						.join(",");
+				// printStr +=
+				// 	"\n" +
+				// 	diskRep
+				// 		.map((x) => `${x.id === "FREESPACE" ? "." : x.id}:${x.size}`)
+				// 		.join(",");
 			}
 		}
 		//6398065793754
 		//6398065450842 // correct, from Isaac
-		console.log(printStr);
+		// console.log(printStr);
 		const checksum = Day9.generateChecksum(diskRep);
 		return checksum;
 	},

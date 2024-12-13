@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Solutions } from "./solutions";
+import { Solutions } from "./Solutions";
 import useLocalStorageState from "use-local-storage-state";
 
 const Solution = ({ day }) => {

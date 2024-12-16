@@ -98,3 +98,9 @@ export const DIRECTIONS = {
 		}
 	},
 };
+
+export const DEBUG = {
+	sleep: async (msec) => {
+		return new Promise((resolve) => setTimeout(resolve, msec));
+	},
+};

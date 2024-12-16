@@ -12,6 +12,7 @@ import Day11 from "./Day11";
 import Day12 from "./Day12";
 import Day13 from "./Day13";
 import Day14 from "./Day14";
+import Day15 from "./Day15";
 
 export const Solutions = {
 	Day1,
@@ -28,4 +29,5 @@ export const Solutions = {
 	Day12,
 	Day13,
 	Day14,
+	Day15,
 };

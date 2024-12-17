@@ -84,7 +84,7 @@ const Day9 = {
 	},
 	part2: async (input) => {
 		const diskRep = Day9.setup(input);
-		let printIndex = 0;
+		// let printIndex = 0;
 		// let printStr = diskRep
 		// 	.map((x) => `${x.id === "FREESPACE" ? "." : x.id}:${x.size}`)
 		// 	.join(",");
@@ -143,7 +143,7 @@ const Day9 = {
 				} else {
 					diskRep.splice(i, 0, { id: "FREESPACE", size: block.size });
 				}
-				printIndex = 0;
+				// printIndex = 0;
 				// printStr +=
 				// 	"\n" +
 				// 	diskRep

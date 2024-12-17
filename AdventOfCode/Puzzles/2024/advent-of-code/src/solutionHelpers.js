@@ -3,15 +3,21 @@ export const inputParser = {
 		input,
 		splitChar = " ",
 		removeEmpties = true,
-		returnAsNumbers = false
+		returnAsNumbers = false,
+		constructor = null
 	) => {
-		return input.split("\r\n").map((line) =>
+		return input.split("\r\n").map((line, lineIndex) =>
 			line
 				.split(splitChar)
 				.filter((item) => (removeEmpties ? item !== "" : true))
-				.map((x) => {
+				.map((x, xIndex) => {
 					const val = x.trim();
-					return returnAsNumbers ? Number(val) : val;
+					if (returnAsNumbers) {
+						return Number(val);
+					} else if (constructor) {
+						return new constructor(xIndex, lineIndex);
+					}
+					return val;
 				})
 		);
 	},
@@ -95,6 +101,41 @@ export const DIRECTIONS = {
 				return turn === "L" ? DIRECTIONS.up : DIRECTIONS.down;
 			default:
 				throw new Error("Invalid direction");
+		}
+	},
+	getLeft: (currentDirection, x, y) => {
+		const dir = DIRECTIONS.getDirectionAfterTurn(currentDirection, "L");
+		return DIRECTIONS.getNextPos(dir, x, y);
+	},
+	getRight: (currentDirection, x, y) => {
+		const dir = DIRECTIONS.getDirectionAfterTurn(currentDirection, "R");
+		return DIRECTIONS.getNextPos(dir, x, y);
+	},
+	determineDirection: (from, to) => {
+		if (from.x === to.x) {
+			if (from.y > to.y) {
+				return DIRECTIONS.up;
+			} else {
+				return DIRECTIONS.down;
+			}
+		} else if (from.y === to.y) {
+			if (from.x > to.x) {
+				return DIRECTIONS.left;
+			} else {
+				return DIRECTIONS.right;
+			}
+		} else if (from.x > to.x) {
+			if (from.y > to.y) {
+				return DIRECTIONS.upLeft;
+			} else {
+				return DIRECTIONS.downLeft;
+			}
+		} else {
+			if (from.y > to.y) {
+				return DIRECTIONS.upRight;
+			} else {
+				return DIRECTIONS.downRight;
+			}
 		}
 	},
 };

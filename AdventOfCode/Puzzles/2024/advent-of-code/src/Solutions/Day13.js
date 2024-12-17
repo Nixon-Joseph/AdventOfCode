@@ -1,4 +1,4 @@
-import { DIRECTIONS, inputParser, UTILS } from "../solutionHelpers";
+import { inputParser } from "../solutionHelpers";
 
 /**
  * Button A: X+94, Y+34

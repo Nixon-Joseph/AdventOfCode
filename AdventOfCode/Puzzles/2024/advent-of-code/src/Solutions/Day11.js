@@ -8,6 +8,7 @@ const Day11 = {
 		});
 		while (blinks > 0) {
 			let newCounts = {};
+			// eslint-disable-next-line no-loop-func
 			Object.keys(stoneCounts).forEach((stoneKey) => {
 				const stone = stoneKey;
 				const count = stoneCounts[stoneKey];

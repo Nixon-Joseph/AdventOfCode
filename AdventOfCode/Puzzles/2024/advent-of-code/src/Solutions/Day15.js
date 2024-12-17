@@ -176,6 +176,8 @@ const Day15 = {
 				case ">":
 					direction = DIRECTIONS.right;
 					break;
+				default:
+					throw new Error("Invalid instruction");
 			}
 			if (doubleSized) {
 				if (Day15.tryMoveDoubled(robot.x, robot.y, direction, grid)) {

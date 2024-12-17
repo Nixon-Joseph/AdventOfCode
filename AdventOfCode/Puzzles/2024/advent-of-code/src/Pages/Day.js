@@ -11,6 +11,7 @@ const Home = () => {
 					className="small"
 					href={`https://adventofcode.com/2024/day/${dayNumber}`}
 					target="_blank"
+					rel="noreferrer"
 					title={`AoC day ${dayNumber}`}
 				>
 					Day {dayNumber}{" "}
